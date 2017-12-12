@@ -3,7 +3,6 @@ CREATE DATABASE IF NOT EXISTS `mpwar_php_exam`;
 USE mpwar_php_exam;
 
 CREATE TABLE IF NOT EXISTS `articles`
-
 (
 
                 `id` INT(10) PRIMARY KEY AUTO_INCREMENT,
