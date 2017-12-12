@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
-  # config.vm.network "private_network", ip: "192.168.70.177"
+  #config.vm.network "private_network", ip: "192.168.33.177"
 
   config.vm.synced_folder "web", "/var/www/html"
 
