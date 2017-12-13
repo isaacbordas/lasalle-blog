@@ -1,7 +1,7 @@
 <?php
 namespace Model;
 
-class Page {
+class Article {
     public function __construct()
     {
         echo "hello, i am a page.";

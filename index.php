@@ -2,6 +2,6 @@
 
 require "init.php";
 
-use Model\Page;
+use Model\Article;
 
-$page1 = new Page();
+$page1 = new Article();
