@@ -1,5 +1,5 @@
 <?php
-namespace Blog;
+namespace Model;
 
 class Page {
     public function __construct()

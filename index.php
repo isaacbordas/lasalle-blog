@@ -2,6 +2,6 @@
 
 require "vendor/autoload.php";
 
-use Blog\Page;
+use Model\Page;
 
 $page1 = new Page();
