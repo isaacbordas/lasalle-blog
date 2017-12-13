@@ -1,0 +1,14 @@
+{% extends "base.html.twg" %}
+
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+{% if articles %}
+<ul>
+{% for article in articles %}
+    <li>{{ article.title|e }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<h2>No hay artículos.</h2>
+{% endif %}
+{% endblock %}

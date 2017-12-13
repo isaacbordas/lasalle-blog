@@ -16,7 +16,7 @@ class Article {
         $db->query('SELECT * FROM articles');
         $row = $db->resultset();
         if ($db->rowCount() > 0){
-            return $row[0];
+            return $row;
         }else{
             return false;
         }

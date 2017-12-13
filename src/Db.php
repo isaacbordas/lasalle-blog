@@ -1,4 +1,4 @@
-<?php /* PDO class */
+<?php
 
 namespace Model;
 
