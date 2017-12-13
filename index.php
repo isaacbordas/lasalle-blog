@@ -4,4 +4,6 @@ require "init.php";
 
 use Model\Article;
 
-$page1 = new Article();
+$article = new Article();
+$all = $article->getAll();
+var_dump($all);

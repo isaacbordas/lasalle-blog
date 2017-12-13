@@ -1,7 +1,6 @@
 <?php
-require "vendor/autoload.php";
-require "config.php";
-require "db.pdo.php";
+include_once ('config.php');
+include_once ('vendor/autoload.php');
 
 if (debug === 1) {
     error_reporting(E_ALL | E_STRICT);
