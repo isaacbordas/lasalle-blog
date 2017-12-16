@@ -46,14 +46,19 @@ class Db{
         return $this->stmt->execute();
     }
 
-    public function resultset(){
+    public function resultset($class){
         $this->execute();
-        return $this->stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->stmt->fetchAll(\PDO::FETCH_CLASS, $class);
+    }
+
+    public function resultsetObject($class){
+        $this->execute();
+        return $this->stmt->fetchObject($class);
     }
 
     public function single(){
         $this->execute();
-        return $this->stmt->fetch(\PDO::FETCH_ASSOC);
+        return $this->stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     public function rowCount(){

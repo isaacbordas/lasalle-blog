@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ basepath }}/assets/css/bootstrap.min.css">
+        <script src="{{ basepath }}/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div id="content">{% block content %}{% endblock %}</div>

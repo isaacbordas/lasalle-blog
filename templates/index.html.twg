@@ -2,10 +2,12 @@
 
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
+
 {% if articles %}
+
 <ul>
 {% for article in articles %}
-    <li>{{ article.title|e }}</li>
+    <li><a href="viewArticle.php?articleid={{ article.id|e }}">{{ article.title|e }}</a></li>
 {% endfor %}
 </ul>
 {% else %}
