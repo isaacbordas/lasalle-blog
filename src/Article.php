@@ -10,19 +10,9 @@ class Article {
     private $tags;
     private $created_at;
 
-    public function __construct(){}
-
-    public function getAll()
+    public function getId()
     {
-        $db = new Db();
-        $db->query('SELECT * FROM articles');
-        $row = $db->resultset(__CLASS__);
-
-        if ($db->rowCount() > 0){
-            return $row;
-        }else{
-            return false;
-        }
+         return $this->id;
     }
 
     public function getTitle()
@@ -30,9 +20,19 @@ class Article {
          return $this->title;
     }
 
-    public function getId()
+    public function getContent()
     {
-         return $this->id;
+         return $this->content;
+    }
+
+    public function getTags()
+    {
+         return $this->tags;
+    }
+
+    public function getCreatedAt()
+    {
+         return $this->created_at;
     }
 
 }

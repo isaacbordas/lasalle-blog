@@ -2,9 +2,9 @@
 
 require "init.php";
 
-use Model\Article;
+use Model\Articles;
 
-$article = new Article();
+$article = new Articles();
 $all = $article->getAll();
 
 $template = $twig->loadTemplate('index.html.twg');
