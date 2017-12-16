@@ -1,0 +1,25 @@
+{% extends "base.html.twg" %}
+
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+
+{% if error == 1 %}
+<p style="color:red;">* E-mail no válido o campos vacíos.</p>
+{% elseif error == 2 %}
+<p style="color:red;">* Error indeterminado al crear el artículo.</p>
+{% endif %}
+
+<form action="addArticle.php" name="addArticle" method="POST" enctype="application/x-www-form-urlencoded">
+    <label for="title">Título</label>
+    <input name="title" type="text" /><br /><br />
+    <label for="content">Contenido</label>
+    <textarea name="content" cols="50" rows="7"></textarea><br /><br />
+    <label for="author">Autor</label>
+    <input name="author" type="text" /><br /><br />
+    <label for="tags">Etiquetas</label>
+    <input name="tags" type="text" /><br /><br />
+
+    <input type="submit" name="send" value="Añadir artículo" />
+</form>
+
+{% endblock %}

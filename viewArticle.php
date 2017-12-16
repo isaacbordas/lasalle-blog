@@ -10,5 +10,10 @@ $articleId = (!empty($articleId) ? $articleId : null);
 $article = new Articles();
 $oneArticle = $article->getById($articleId);
 
+if (empty($oneArticle)) {
+    header('Location: 404.php');
+    die();
+}
+
 $template = $twig->loadTemplate('viewArticle.html.twg');
 echo $template->render(array('articles' => $oneArticle, 'page_title' => $oneArticle[0]->title));

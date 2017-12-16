@@ -6,6 +6,13 @@
 {% if articles %}
 
 {% for article in articles %}
+
+{% if error == 1 %}
+<p style="color:red;">* E-mail no válido o campos vacíos.</p>
+{% elseif error == 2 %}
+<p style="color:red;">* Error indeterminado o artículo sin modificaciones.</p>
+{% endif %}
+
 <form action="editArticle.php" name="editArticle" method="POST" enctype="application/x-www-form-urlencoded">
     <label for="title">Título</label>
     <input name="title" type="text" value="{{ article.title|e }}" /><br /><br />

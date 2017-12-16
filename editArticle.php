@@ -7,19 +7,31 @@ use Model\Articles;
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
+    $id = filter_input(INPUT_POST, 'articleId', FILTER_VALIDATE_INT);
+    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+    $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
+    $tags = filter_input(INPUT_POST, 'tags', FILTER_SANITIZE_STRING);
+    $author = filter_input(INPUT_POST, 'author', FILTER_VALIDATE_EMAIL);
+
+    if (empty($title) || empty($content) || empty($author) || empty($tags)) {
+        header('Location: editArticle.php?articleid=' . $article->id . '&error=1');
+        die();
+    }
+
     $article = new Articles();
-    $article->id = $_POST['articleId'];
-    $article->title = $_POST['title'];
-    $article->content = $_POST['content'];
-    $article->author = $_POST['author'];
-    $article->tags = $_POST['tags'];
+    $article->id = $id;
+    $article->title = $title;
+    $article->content = $content;
+    $article->author = $author;
+    $article->tags = $tags;
+    $article->created_at = time();
     $result = $article->editArticle();
 
     if (!empty($result)) {
         header('Location: index.php?admin=1&success=1');
         die();
     } else {
-        header('Location: editArticle.php?articleid=' . $article->id . '&error=1');
+        header('Location: editArticle.php?articleid=' . $article->id . '&error=2');
         die();
     }
 
@@ -31,5 +43,12 @@ $articleId = (!empty($articleId) ? $articleId : null);
 $article = new Articles();
 $oneArticle = $article->getById($articleId);
 
+if (empty($oneArticle)) {
+    header('Location: 404.php');
+    die();
+}
+
+$error = (!empty($_GET['error']) ? $_GET['error'] : null);
+
 $template = $twig->loadTemplate('editArticle.html.twg');
-echo $template->render(array('articles' => $oneArticle, 'page_title' => 'Edit article: ' . $oneArticle[0]->title));
+echo $template->render(array('articles' => $oneArticle, 'page_title' => 'Editar artículo: ' . $oneArticle[0]->title, 'error' => $error));

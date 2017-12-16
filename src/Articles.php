@@ -36,6 +36,27 @@ class Articles extends Article
         }
     }
 
+    public function addArticle()
+    {
+        $db = new Db();
+        $db->query('INSERT INTO articles (title, author, content, tags, created_at) VALUES (:title, :author, :content, :tags, :created_at)');
+        $params = array(
+            array('var' => ':title', 'value' => $this->title, 'type' => \PDO::PARAM_STR),
+            array('var' => ':author', 'value' => $this->author, 'type' => \PDO::PARAM_STR),
+            array('var' => ':content', 'value' => $this->content, 'type' => \PDO::PARAM_STR),
+            array('var' => ':tags', 'value' => $this->tags, 'type' => \PDO::PARAM_STR),
+            array('var' => ':created_at', 'value' => $this->created_at, 'type' => \PDO::PARAM_INT)
+        );
+        $db->bind($params);
+        $db->execute();
+
+        if ($db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function editArticle()
     {
         $db = new Db();
