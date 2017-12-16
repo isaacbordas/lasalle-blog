@@ -1,2 +1,3 @@
 /* style for blog */
 nav li{display: inline-block;}
+label{width: 100px; display: inline-block; vertical-align: top;}

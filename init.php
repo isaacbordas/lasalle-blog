@@ -6,7 +6,6 @@ $loader = new Twig_Loader_Filesystem('templates');
 $twig = new Twig_Environment($loader, array(
     'debug' => true));
 $twig->addExtension(new Twig_Extension_Debug());
-$twig->addGlobal('basepath', $_SERVER['PATH_INFO']);
 
 if (debug === 1) {
     error_reporting(E_ALL | E_STRICT);

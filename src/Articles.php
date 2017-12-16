@@ -36,4 +36,25 @@ class Articles extends Article
         }
     }
 
+    public function editArticle()
+    {
+        $db = new Db();
+        $db->query('UPDATE articles SET title = :title, author = :author, content = :content, tags = :tags WHERE id = :articleId');
+        $params = array(
+            array('var' => ':articleId', 'value' => $this->id, 'type' => \PDO::PARAM_INT),
+            array('var' => ':title', 'value' => $this->title, 'type' => \PDO::PARAM_STR),
+            array('var' => ':author', 'value' => $this->author, 'type' => \PDO::PARAM_STR),
+            array('var' => ':content', 'value' => $this->content, 'type' => \PDO::PARAM_STR),
+            array('var' => ':tags', 'value' => $this->tags, 'type' => \PDO::PARAM_STR)
+        );
+        $db->bind($params);
+        $db->execute();
+
+        if ($db->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
