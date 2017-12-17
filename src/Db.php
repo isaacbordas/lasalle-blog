@@ -46,19 +46,13 @@ class Db{
         return $this->stmt->execute();
     }
 
-    public function resultset($class){
-        $this->execute();
-        return $this->stmt->fetchAll(\PDO::FETCH_CLASS, $class);
-    }
-
-    public function resultsetObject($class){
-        $this->execute();
-        return $this->stmt->fetchObject($class);
-    }
-
     public function single(){
         $this->execute();
-        return $this->stmt->fetch(\PDO::FETCH_OBJ);
+        return $this->stmt->fetch();
+    }
+
+    public function single_fetch(){
+        return $this->stmt->fetch();
     }
 
     public function rowCount(){
@@ -67,26 +61,6 @@ class Db{
 
     public function lastInsertId(){
         return $this->dbh->lastInsertId();
-    }
-
-    public function beginTransaction(){
-        return $this->dbh->beginTransaction();
-    }
-
-    public function endTransaction(){
-        return $this->dbh->commit();
-    }
-
-    public function cancelTransaction(){
-        return $this->dbh->rollBack();
-    }
-
-    public function debugDumpParams(){
-        return $this->stmt->debugDumpParams();
-    }
-
-    public function errorHandling(){
-        return $this->stmt->errorInfo();
     }
 
 }

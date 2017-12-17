@@ -9,10 +9,23 @@ class Articles extends Article
     {
         $db = new Db();
         $db->query('SELECT id, title, content FROM articles');
-        $row = $db->resultset(__CLASS__);
+        $db->execute();
+
+        $result = array();
+        $c = 0;
+
+        while ($row = $db->single_fetch())
+        {
+            $article = new Article();
+            $article->setId($row['id']);
+            $article->setTitle($row['title']);
+            $article->setContent($row['content']);
+            $result[$c] = $article;
+            $c++;
+        }
 
         if ($db->rowCount() > 0){
-            return $row;
+            return $result;
         }else{
             return false;
         }
@@ -27,10 +40,18 @@ class Articles extends Article
                 );
         $db->bind($params);
 
-        $row = $db->resultset(__CLASS__);
+        $row = $db->single();
+
+        $article = new Article();
+        $article->setId($row['id']);
+        $article->setTitle($row['title']);
+        $article->setAuthor($row['author']);
+        $article->setContent($row['content']);
+        $article->setTags($row['tags']);
+        $article->setCreatedAt($row['created_at']);
 
         if ($db->rowCount() > 0){
-            return $row;
+            return $article;
         }else{
             return false;
         }
@@ -94,11 +115,23 @@ class Articles extends Article
                     array('var' => ':keyword', 'value' => $params['keyword'], 'type' => \PDO::PARAM_STR)
                 );
         $db->bind($params);
+        $db->execute();
 
-        $row = $db->resultset(__CLASS__);
+        $result = array();
+        $c = 0;
+
+        while ($row = $db->single_fetch())
+        {
+            $article = new Article();
+            $article->setId($row['id']);
+            $article->setTitle($row['title']);
+            $article->setContent($row['content']);
+            $result[$c] = $article;
+            $c++;
+        }
 
         if ($db->rowCount() > 0){
-            return $row;
+            return $result;
         }else{
             return false;
         }

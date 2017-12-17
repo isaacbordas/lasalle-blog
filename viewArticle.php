@@ -9,8 +9,10 @@ $articleId = (!empty($articleId) ? $articleId : null);
 
 $article = new Articles();
 $oneArticle = $article->getById($articleId);
+var_dump($oneArticle);
 
-$tag = explode(',', $oneArticle[0]->tags);
+$p_tag = $oneArticle->tags;
+$tag = explode(',', $p_tag);
 $tags = array_map('trim', $tag);
 
 if (empty($oneArticle)) {
@@ -19,4 +21,4 @@ if (empty($oneArticle)) {
 }
 
 $template = $twig->loadTemplate('viewArticle.html.twg');
-echo $template->render(array('articles' => $oneArticle, 'page_title' => $oneArticle[0]->title, 'etiquetas' => $tags));
+echo $template->render(array('article' => $oneArticle, 'page_title' => $oneArticle->getTitle(), 'etiquetas' => $tags));

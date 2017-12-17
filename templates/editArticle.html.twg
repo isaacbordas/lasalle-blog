@@ -3,9 +3,7 @@
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
 
-{% if articles %}
-
-{% for article in articles %}
+{% if article %}
 
 {% if error == 1 %}
 <p style="color:red;">* E-mail no válido o campos vacíos.</p>
@@ -15,17 +13,16 @@
 
 <form action="editArticle.php" name="editArticle" method="POST" enctype="application/x-www-form-urlencoded">
     <label for="title">Título</label>
-    <input name="title" type="text" value="{{ article.title|e }}" /><br /><br />
+    <input name="title" type="text" value="{{ article.getTitle|e }}" /><br /><br />
     <label for="content">Contenido</label>
-    <textarea name="content" cols="50" rows="7" value="{{ article.content|e }}">{{ article.content|e }}</textarea><br /><br />
+    <textarea name="content" cols="50" rows="7" value="{{ article.getContent|e }}">{{ article.getContent|e }}</textarea><br /><br />
     <label for="author">Autor</label>
-    <input name="author" type="text" value="{{ article.author|e }}" /><br /><br />
+    <input name="author" type="text" value="{{ article.getAuthor|e }}" /><br /><br />
     <label for="tags">Etiquetas</label>
-    <input name="tags" type="text" value="{{ article.tags|e }}" /><br /><br />
-    <input name="articleId" type="hidden" value="{{ article.id|e }}" />
+    <input name="tags" type="text" value="{{ article.Tag.getTag|e }}" /><br /><br />
+    <input name="articleId" type="hidden" value="{{ article.getId|e }}" />
     <input type="submit" name="send" value="Modificar artículo" />
 </form>
-{% endfor %}
 
 {% else %}
 <h2>No hay artículos.</h2>

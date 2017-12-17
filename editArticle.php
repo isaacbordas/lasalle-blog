@@ -43,6 +43,12 @@ $articleId = (!empty($articleId) ? $articleId : null);
 $article = new Articles();
 $oneArticle = $article->getById($articleId);
 
+var_dump($oneArticle);
+
+$tags = $oneArticle->getTag();
+
+var_dump($tags);
+
 if (empty($oneArticle)) {
     header('Location: 404.php');
     die();
@@ -51,4 +57,4 @@ if (empty($oneArticle)) {
 $error = (!empty($_GET['error']) ? $_GET['error'] : null);
 
 $template = $twig->loadTemplate('editArticle.html.twg');
-echo $template->render(array('articles' => $oneArticle, 'page_title' => 'Editar artículo: ' . $oneArticle[0]->title, 'error' => $error));
+echo $template->render(array('article' => $oneArticle, 'page_title' => 'Editar artículo: ' . $oneArticle->getTitle(), 'error' => $error));

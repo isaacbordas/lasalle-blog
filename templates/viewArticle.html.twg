@@ -3,21 +3,19 @@
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
 
-{% if articles %}
+{% if article %}
 
-{% for article in articles %}
-    <h1>{{ article.title|e }}</h1>
-    <p>{{ article.content|e }}</p>
+    <h1>{{ article.getTitle|e }}</h1>
+    <p>{{ article.getContent|e }}</p>
     <hr />
-    Fecha de creación: {{ article.created_at is empty ? "N/A" : article.created_at|date("d/m/Y") }}<br />
-    Autor: <a href="search.php?searchby=author&keyword={{ article.author|e }}">{{ article.author|e }}</a><br />
+    Fecha de creación: {{ article.getCreatedAt is empty ? "N/A" : article.getCreatedAt|date("d/m/Y") }}<br />
+    Autor: <a href="search.php?searchby=author&keyword={{ article.getAuthor|e }}">{{ article.getAuthor|e }}</a><br />
     Etiquetas:
     {% if etiquetas %}
         {% for etiqueta in etiquetas %}
         <a href="search.php?searchby=tag&keyword={{ etiqueta|e }}">{{ etiqueta|e }}</a>
         {% endfor %}
     {% endif %}
-{% endfor %}
 
 {% else %}
 <h2>No hay artículos.</h2>
