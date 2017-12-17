@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $author = filter_input(INPUT_POST, 'author', FILTER_VALIDATE_EMAIL);
 
     if (empty($title) || empty($content) || empty($author) || empty($tags)) {
-        header('Location: editArticle.php?articleid=' . $article->id . '&error=1');
+        header('Location: editArticle.php?articleid=' . $id . '&error=1');
         die();
     }
 

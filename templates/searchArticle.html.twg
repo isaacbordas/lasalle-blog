@@ -3,7 +3,7 @@
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
 
-<h1>Listado de artículos</h1>
+<h1>Listado de artículos por {{ searchparams.searchby }} {{ searchparams.keyword }}</h1>
 
 {% if articles %}
 

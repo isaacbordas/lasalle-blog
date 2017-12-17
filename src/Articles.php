@@ -82,7 +82,10 @@ class Articles extends Article
     public function search($params)
     {
         if ($params['searchby'] == "author") {
-            $sql = 'SELECT id, title, author, content, tags, created_at FROM articles WHERE author = :keyword';
+            $sql = 'SELECT id, title, content FROM articles WHERE author = :keyword';
+        }
+        if ($params['searchby'] == "tag") {
+            $sql = 'SELECT id, title, content FROM articles WHERE tag = :keyword';
         }
 
         $db = new Db();
