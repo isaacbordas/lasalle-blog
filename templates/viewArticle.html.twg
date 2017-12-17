@@ -9,7 +9,14 @@
     <h1>{{ article.title|e }}</h1>
     <p>{{ article.content|e }}</p>
     <hr />
-    <a href="#">{{ article.author|e }}</a>
+    Fecha de creación: {{ article.created_at is empty ? "N/A" : article.created_at|date("d/m/Y") }}<br />
+    Autor: <a href="search.php?searchby=author&keyword={{ article.author|e }}">{{ article.author|e }}</a><br />
+    Etiquetas:
+    {% if etiquetas %}
+        {% for etiqueta in etiquetas %}
+        <a href="search.php?searchby=tag&keyword={{ etiqueta|e }}">{{ etiqueta|e }}</a>
+        {% endfor %}
+    {% endif %}
 {% endfor %}
 
 {% else %}
