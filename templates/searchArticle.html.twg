@@ -1,0 +1,25 @@
+{% extends "base.html.twg" %}
+
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+
+<h1>Listado de artículos</h1>
+
+{% if articles %}
+
+<ul>
+{% for article in articles %}
+    <li>
+        <a href="viewArticle.php?articleid={{ article.id|e }}">{{ article.title|e }}</a>
+    {% if isAdmin %}
+         - <a href="editArticle.php?articleid={{ article.id|e }}">Edit</a>
+    {% endif %}
+        <p>{{ article.content|e }}</p>
+    </li>
+{% endfor %}
+</ul>
+{% else %}
+<h2>No hay artículos.</h2>
+{% endif %}
+
+{% endblock %}

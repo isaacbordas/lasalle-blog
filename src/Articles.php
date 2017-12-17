@@ -21,7 +21,7 @@ class Articles extends Article
     public function getById($id)
     {
         $db = new Db();
-        $db->query('SELECT title, author, content, tags, created_at FROM articles WHERE id = :articleId');
+        $db->query('SELECT id, title, author, content, tags, created_at FROM articles WHERE id = :articleId');
         $params = array(
                     array('var' => ':articleId', 'value' => $id, 'type' => \PDO::PARAM_INT)
                 );
@@ -68,6 +68,7 @@ class Articles extends Article
             array('var' => ':content', 'value' => $this->content, 'type' => \PDO::PARAM_STR),
             array('var' => ':tags', 'value' => $this->tags, 'type' => \PDO::PARAM_STR)
         );
+
         $db->bind($params);
         $db->execute();
 
@@ -78,12 +79,16 @@ class Articles extends Article
         }
     }
 
-    public function search()
+    public function search($params)
     {
+        if ($params['searchby'] == "author") {
+            $sql = 'SELECT id, title, author, content, tags, created_at FROM articles WHERE author = :keyword';
+        }
+
         $db = new Db();
-        $db->query('SELECT id, title, author, content, tags, created_at FROM articles WHERE id = :articleId');
+        $db->query($sql);
         $params = array(
-                    array('var' => ':articleId', 'value' => $id, 'type' => \PDO::PARAM_INT)
+                    array('var' => ':keyword', 'value' => $params['keyword'], 'type' => \PDO::PARAM_STR)
                 );
         $db->bind($params);
 
