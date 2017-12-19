@@ -8,7 +8,7 @@ class Articles extends Article
     public function getAll()
     {
         $db = new Db();
-        $db->query('SELECT id, title, content FROM articles');
+        $db->query('SELECT id, title, content FROM articles ORDER BY created_at DESC');
         $db->execute();
 
         $result = array();
@@ -103,10 +103,10 @@ class Articles extends Article
     public function search($params)
     {
         if ($params['searchby'] == "author") {
-            $sql = 'SELECT id, title, content FROM articles WHERE author = :keyword';
+            $sql = 'SELECT id, title, content FROM articles WHERE author = :keyword ORDER BY created_at DESC';
         }
         if ($params['searchby'] == "tag") {
-            $sql = 'SELECT id, title, content FROM articles WHERE tags RLIKE "[[:<:]]:keyword[[:>:]]"';
+            $sql = 'SELECT id, title, content FROM articles WHERE tags RLIKE "[[:<:]]:keyword[[:>:]]" ORDER BY created_at DESC';
         }
 
         $db = new Db();
