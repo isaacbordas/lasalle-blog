@@ -11,9 +11,9 @@
     Fecha de creación: {{ article.getCreatedAt is empty ? "N/A" : article.getCreatedAt|date("d/m/Y") }}<br />
     Autor: <a href="search.php?searchby=author&keyword={{ article.getAuthor|e }}">{{ article.getAuthor|e }}</a><br />
     Etiquetas:
-    {% if etiquetas %}
-        {% for etiqueta in etiquetas %}
-        <a href="search.php?searchby=tag&keyword={{ etiqueta|e }}">{{ etiqueta|e }}</a>
+    {% if article.getTag.getTag %}
+        {% for tags in article.getTag.getTag %}
+        <a href="search.php?searchby=tag&keyword={{ tags|e }}">{{ tags|e }}</a>
         {% endfor %}
     {% endif %}
 

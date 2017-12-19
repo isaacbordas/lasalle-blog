@@ -54,8 +54,6 @@ class Article {
 
     public function getTag()
     {
-        $tags = new \Model\Tag;
-        $this->tag = $tags->getTag();
         return $this->tag;
     }
 

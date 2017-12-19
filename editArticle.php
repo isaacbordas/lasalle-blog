@@ -43,12 +43,6 @@ $articleId = (!empty($articleId) ? $articleId : null);
 $article = new Articles();
 $oneArticle = $article->getById($articleId);
 
-var_dump($oneArticle);
-
-$tags = $oneArticle->getTag();
-
-var_dump($tags);
-
 if (empty($oneArticle)) {
     header('Location: 404.php');
     die();

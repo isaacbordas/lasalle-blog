@@ -19,7 +19,7 @@
     <label for="author">Autor</label>
     <input name="author" type="text" value="{{ article.getAuthor|e }}" /><br /><br />
     <label for="tags">Etiquetas</label>
-    <input name="tags" type="text" value="{{ article.Tag.getTag|e }}" /><br /><br />
+    <input name="tags" type="text" value="{{ article.getTag.getTag|join(', ') }}" /><br /><br />
     <input name="articleId" type="hidden" value="{{ article.getId|e }}" />
     <input type="submit" name="send" value="Modificar artículo" />
 </form>
