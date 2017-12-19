@@ -106,7 +106,7 @@ class Articles extends Article
             $sql = 'SELECT id, title, content FROM articles WHERE author = :keyword';
         }
         if ($params['searchby'] == "tag") {
-            $sql = 'SELECT id, title, content FROM articles WHERE tag = :keyword';
+            $sql = 'SELECT id, title, content FROM articles WHERE tags RLIKE "[[:<:]]:keyword[[:>:]]"';
         }
 
         $db = new Db();
