@@ -106,13 +106,13 @@ class Articles extends Article
             $sql = 'SELECT id, title, content FROM articles WHERE author = :keyword ORDER BY created_at DESC';
         }
         if ($params['searchby'] == "tag") {
-            $sql = 'SELECT id, title, content FROM articles WHERE tags RLIKE "[[:<:]]:keyword[[:>:]]" ORDER BY created_at DESC';
+            $sql = 'SELECT id, title, content FROM articles WHERE tags LIKE :keyword ORDER BY created_at DESC';
         }
 
         $db = new Db();
         $db->query($sql);
         $params = array(
-                    array('var' => ':keyword', 'value' => $params['keyword'], 'type' => \PDO::PARAM_STR)
+                    array('var' => ':keyword', 'value' => '%'.$params["keyword"].'%', 'type' => \PDO::PARAM_STR)
                 );
         $db->bind($params);
         $db->execute();
