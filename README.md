@@ -1,4 +1,3 @@
-# My project's README
 Enunciat:
 Entregable: Blog
 Vamos a crear un blog donde poder escribir artículos. La información se guardará en una base de datos MySQL. El blog tiene distintas secciones:
